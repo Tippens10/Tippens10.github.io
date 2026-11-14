@@ -80,6 +80,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 }
 .chip button:hover { filter: brightness(0.96); }
 a.chip { text-decoration: none; user-select: auto; }
+a.chip.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+a.chip.primary:hover { filter: brightness(1.08); border-color: var(--accent); }
+a.chip.primary svg { width: 16px; height: 16px; flex: none; }
 a.chip:hover { border-color: var(--accent); }
 
 /* spec sheet */
@@ -249,6 +252,7 @@ footer h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); text-transform: none; letter-
       <p class="role">Development Excellence Engineer Program · Halliburton</p>
       <p class="summary">Ingeniero en Mecatrónica con experiencia en automatización, coordinación operativa y gestión de datos en la industria del petróleo y gas. Manejo PLC (Siemens, Festo), SAP, MAPS y optimización de procesos, con experiencia en movilización de personal para LATAM, documentación de herramientas y soporte operativo en pozo. Busco aplicar esta experiencia técnica y operativa en entornos industriales, de ingeniería y de energía.</p>
       <div class="contact">
+        <a class="chip primary" href="https://tippens10.github.io/cv/Orlando-Acosta-Pinto-CV.pdf" target="_blank" rel="noopener" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>Descargar CV (PDF)</a>
         <span class="chip"><span id="email">oacostapinto@gmail.com</span><button type="button" data-copy="email">Copiar</button></span>
         <span class="chip"><span id="phone">+52 938 196 7170</span><button type="button" data-copy="phone">Copiar</button></span>
         <a class="chip" href="https://linkedin.com/in/orlando-acosta" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -441,6 +445,7 @@ footer h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); text-transform: none; letter-
       </div>
     </div>
     <div class="contact" style="margin-top:0">
+      <a class="chip primary" href="https://tippens10.github.io/cv/Orlando-Acosta-Pinto-CV.pdf" target="_blank" rel="noopener" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>Descargar CV</a>
       <span class="chip"><span id="email2">oacostapinto@gmail.com</span><button type="button" data-copy="email2">Copiar</button></span>
       <a class="chip" href="https://linkedin.com/in/orlando-acosta" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>

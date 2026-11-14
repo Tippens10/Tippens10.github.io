@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Orlando Josue Acosta Pinto, Ingeniero en Mecatrónica en la industria de petróleo y gas.">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Orlando Acosta Pinto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: hoja técnica de herramienta + trayectoria como registro de pozo (pista vertical con intervalos por fecha) */
+/* Tema único claro (elegido a propósito): blancos cálidos, grises suaves y rojo como acento */
+:root {
+  --bg: #fbfaf9;
+  --surface: #ffffff;
+  --ink: #2a2526;
+  --muted: #6f6869;
+  --line: #e7e2e1;
+  --accent: #c8102e;
+  --accent-soft: #fcebed;
+  --hazard: #c8102e;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.05; }
+.mono { font-family: var(--f-mono); }
+.label {
+  font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ---------- top bar ---------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.topbar .mark { font-family: var(--f-display); font-weight: 700; font-size: 1.25rem; letter-spacing: 0.02em; text-decoration: none; color: var(--ink); }
+.topbar nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.topbar nav a { font-size: 0.85rem; color: var(--muted); text-decoration: none; font-weight: 500; }
+.topbar nav a:hover { color: var(--accent); }
+@media (max-width: 640px) { .topbar nav { display: none; } }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 64px 48px; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.hero h1 { font-size: clamp(3rem, 8vw, 5.6rem); font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; }
+.hero h1 span { color: var(--accent); display: block; }
+.hero .role { margin-top: 18px; font-size: 1.15rem; font-weight: 500; }
+.hero .summary { margin-top: 18px; color: var(--muted); max-width: 60ch; }
+.contact { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--line); background: var(--surface);
+  padding: 8px 12px; border-radius: 4px; font-size: 0.9rem; color: var(--ink);
+  user-select: all;
+}
+.chip button {
+  font: inherit; font-size: 0.72rem; font-family: var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase;
+  border: 0; background: var(--accent-soft); color: var(--accent); padding: 2px 8px; border-radius: 3px; cursor: pointer; user-select: none;
+}
+.chip button:hover { filter: brightness(0.96); }
+a.chip { text-decoration: none; user-select: auto; }
+a.chip:hover { border-color: var(--accent); }
+
+/* spec sheet */
+.spec { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--accent); }
+.spec header { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.spec header strong { font-family: var(--f-display); font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.spec dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); }
+.spec dt, .spec dd { margin: 0; padding: 11px 18px; border-bottom: 1px solid var(--line); }
+.spec dt { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-top: 14px; }
+.spec dd { font-size: 0.93rem; }
+.spec dl > :nth-last-child(-n+2) { border-bottom: 0; }
+
+@media (max-width: 820px) { .hero { grid-template-columns: minmax(0, 1fr); padding-block: 40px 32px; gap: 32px; } }
+
+/* ---------- sections ---------- */
+section { padding-block: 56px; border-top: 1px solid var(--line); scroll-margin-top: 60px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+.sec-head h2 { font-size: clamp(2rem, 4.5vw, 2.8rem); text-transform: uppercase; font-weight: 600; letter-spacing: 0.01em; }
+
+/* ---------- well-log timeline ---------- */
+.log { display: grid; grid-template-columns: 112px minmax(0, 1fr); }
+.depth {
+  position: relative; padding: 4px 18px 32px 0; text-align: right;
+  border-right: 2px solid var(--line); margin-right: -2px;
+}
+.depth::after {
+  content: ""; position: absolute; right: -8px; top: 10px; width: 14px; height: 14px;
+  background: var(--bg); border: 2px solid var(--accent); border-radius: 50%;
+}
+.depth .y { font-family: var(--f-mono); font-size: 0.9rem; font-weight: 500; display: block; }
+.depth .m { font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); display: block; }
+.job { padding: 0 0 40px 32px; min-width: 0; }
+.job .co { font-size: 1.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+.job .pos { font-weight: 600; margin-top: 4px; }
+.job .meta { margin-top: 2px; }
+.job ul { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.job li { position: relative; padding-left: 20px; max-width: 72ch; }
+.job li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 2px; background: var(--accent); }
+.job li b { font-weight: 600; }
+.lines { margin-top: 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.line-card { background: var(--surface); border: 1px solid var(--line); padding: 16px; min-width: 0; }
+.line-card .code { font-family: var(--f-mono); font-size: 0.75rem; color: var(--hazard); letter-spacing: 0.08em; }
+.line-card h3 { font-size: 1.25rem; font-weight: 600; margin: 4px 0 8px; }
+.line-card p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+.line-card .std { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-family: var(--f-mono); font-size: 0.72rem; border: 1px solid var(--line); padding: 2px 7px; border-radius: 3px; color: var(--ink); white-space: nowrap; }
+@media (max-width: 820px) { .lines { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) {
+  .log { grid-template-columns: 76px minmax(0, 1fr); }
+  .depth { padding-right: 14px; }
+  .job { padding-left: 20px; }
+  .job .co { font-size: 1.5rem; }
+}
+
+/* ---------- projects ---------- */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.proj { background: var(--surface); border: 1px solid var(--line); padding: 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.proj .top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.proj h3 { font-size: 1.55rem; font-weight: 600; }
+.proj p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.proj .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
+.stat { font-family: var(--f-display); font-size: 2.4rem; font-weight: 700; color: var(--accent); line-height: 1; }
+@media (max-width: 720px) { .projects { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- skills ---------- */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.skill { padding: 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); min-width: 0; }
+.skill h3 { font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 10px; }
+.skill .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill .tags .tag { white-space: normal; }
+
+/* ---------- bottom grid ---------- */
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.trio h3 { font-size: 1.4rem; font-weight: 600; text-transform: uppercase; margin-bottom: 14px; }
+.trio .item { padding-block: 12px; border-top: 1px solid var(--line); }
+.trio .item:last-child { border-bottom: 1px solid var(--line); }
+.trio .item strong { display: block; font-weight: 600; }
+.trio .item span { color: var(--muted); font-size: 0.9rem; }
+.lang { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.meter { display: flex; gap: 3px; }
+.meter i { width: 14px; height: 8px; background: var(--line); display: block; }
+.meter i.on { background: var(--accent); }
+.soft { display: flex; flex-wrap: wrap; gap: 6px; }
+@media (max-width: 820px) { .trio { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- footer ---------- */
+footer { border-top: 3px solid var(--accent); padding-block: 40px 56px; background: var(--surface); }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; align-items: end; }
+footer h2 { font-size: clamp(2rem, 5vw, 3rem); text-transform: uppercase; font-weight: 700; }
+footer p { margin: 8px 0 0; color: var(--muted); max-width: 48ch; }
+
+/* ---------- fotos ---------- */
+.line-card { padding: 0; }
+.line-card img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.line-card .body { padding: 16px; }
+
+.gallery { margin-top: 28px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 180px; gap: 8px; }
+.gallery figure { margin: 0; position: relative; overflow: hidden; background: var(--line); min-width: 0; }
+.gallery figure.wide { grid-column: span 2; }
+.gallery figure.tall { grid-row: span 2; }
+.gallery figure.big { grid-column: span 2; grid-row: span 2; }
+.media { display: grid; gap: 8px; margin-top: 4px; }
+.media.pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.media video { display: block; width: 100%; background: var(--line); border: 1px solid var(--line); }
+.media.pair video { aspect-ratio: 9 / 16; object-fit: cover; }
+.media.wide video { aspect-ratio: 16 / 9; object-fit: cover; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.gallery figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 20px 10px 8px; color: #fff; font-size: 0.8rem; font-weight: 500; background: linear-gradient(transparent, rgba(20, 10, 10, .72)); }
+@media (prefers-reduced-motion: no-preference) { .gallery figure:hover img { transform: scale(1.04); } }
+@media (max-width: 720px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 150px; } }
+
+.proj.feature { grid-column: 1 / -1; }
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 6px; }
+.shots figure { margin: 0; border: 1px solid var(--line); min-width: 0; }
+.shots img { display: block; width: 100%; height: auto; }
+.shots figcaption { padding: 8px 12px; font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--line); }
+@media (max-width: 720px) { .shots { grid-template-columns: minmax(0, 1fr); } }
+
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 4px; font-size: 0.85rem; z-index: 20; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero > * { animation: rise .6s ease-out both; }
+  .hero > :nth-child(2) { animation-delay: .12s; }
+  @keyframes rise { from { transform: translateY(10px); } to { transform: none; } }
+}
+</style>
+</head>
+<body>
+
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="mark" href="#inicio">O. ACOSTA</a>
+    <nav aria-label="Secciones">
+      <a href="#experiencia">Experiencia</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</div>
+
+<main id="inicio">
+  <div class="wrap hero">
+    <div>
+      <p class="label">Ingeniero en Mecatrónica · Oil &amp; Gas</p>
+      <h1>Orlando Josue <span>Acosta Pinto</span></h1>
+      <p class="role">Development Excellence Engineer Program · Halliburton</p>
+      <p class="summary">Ingeniero en Mecatrónica con experiencia en automatización, coordinación operativa y gestión de datos en la industria del petróleo y gas. Manejo PLC (Siemens, Festo), SAP, MAPS y optimización de procesos, con experiencia en movilización de personal para LATAM, documentación de herramientas y soporte operativo en pozo. Busco aplicar esta experiencia técnica y operativa en entornos industriales, de ingeniería y de energía.</p>
+      <div class="contact">
+        <span class="chip"><span id="email">oacostapinto@gmail.com</span><button type="button" data-copy="email">Copiar</button></span>
+        <span class="chip"><span id="phone">+52 938 196 7170</span><button type="button" data-copy="phone">Copiar</button></span>
+        <a class="chip" href="https://linkedin.com/in/orlando-acosta" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <aside class="spec" aria-label="Ficha técnica">
+      <header><strong>Ficha técnica</strong><span class="label">Rev. 2026</span></header>
+      <dl>
+        <dt>Base</dt><dd>Cd. del Carmen, Campeche, México</dd>
+        <dt>Título</dt><dd>Ing. en Mecatrónica, UNACAR (2025)</dd>
+        <dt>Líneas</dt><dd>Completion Tools · Artificial Lift · Production Enhancement</dd>
+        <dt>Control</dt><dd>PLC Siemens, Festo, Modbus</dd>
+        <dt>Seguridad</dt><dd>IADC RigPass · Anexo SSPA (PEMEX)</dd>
+        <dt>Idiomas</dt><dd>Español nativo · Inglés B2</dd>
+      </dl>
+    </aside>
+  </div>
+
+  <section id="experiencia">
+    <div class="wrap">
+      <div class="sec-head"><h2>Experiencia</h2><span class="label">Registro por intervalo · más reciente arriba</span></div>
+
+      <div class="log">
+        <div class="depth"><span class="y">2026</span><span class="m">May–Sep</span></div>
+        <article class="job">
+          <h3 class="co">Halliburton</h3>
+          <p class="pos" style="margin-bottom:0">Development Excellence Engineer Program (DEEP)</p>
+          <p class="label meta">Cd. del Carmen, México</p>
+
+          <div class="lines">
+            <div class="line-card">
+              <img src="img/hct-packer.webp" alt="Empacador recuperable sobre soportes en el taller HCT" loading="lazy" style="object-position: 40% center">
+              <div class="body">
+              <span class="code">HCT</span>
+              <h3>Completion Tools</h3>
+              <p>Empacadores recuperables y HPHT, liners, colgadores deformables, sartas de limpieza de pozo, válvulas TRSV y sensores permanentes de P/T.</p>
+              </div>
+            </div>
+            <div class="line-card">
+              <img src="img/als-cable.jpg" alt="Terminales de cable de potencia para bombeo electrocentrífugo" loading="lazy">
+              <div class="body">
+              <span class="code">ALS</span>
+              <h3>Artificial Lift</h3>
+              <p>Pruebas de taller a motores, bombas y secciones de sello BEC/ESP antes de su envío a campo. Instrumentación de fondo y sistemas eléctricos.</p>
+              </div>
+            </div>
+            <div class="line-card">
+              <img src="img/pe-solubilidad.jpg" alt="Frascos de prueba de solubilidad con distintos sistemas ácidos" loading="lazy">
+              <div class="body">
+              <span class="code">PE</span>
+              <h3>Production Enhancement</h3>
+              <p>Control de calidad en laboratorio de estimulación ácida, apuntalantes y surfactantes. Espectrofotometría de crudo y análisis de agua.</p>
+              <div class="std"><span class="tag">ASTM E224</span><span class="tag">API RP 19C</span><span class="tag">ISO 13503-2</span><span class="tag">API RP 42</span></div>
+              </div>
+            </div>
+          </div>
+
+          <ul>
+            <li>Desarrollé soluciones internas en <b>Power Apps</b> para digitalizar el inventario de equipos y los flujos de trabajo operativos.</li>
+            <li>Impartí Momentos de Seguridad <b>HSE</b> y presentaciones técnicas alineadas con las Prácticas Globales Recomendadas de Halliburton y las normas NOM aplicables.</li>
+          </ul>
+
+          <div class="gallery" aria-label="Fotos del programa DEEP">
+            <figure class="wide"><img src="img/hct-taller.jpg" alt="Taller de Completion Tools con sartas sobre soportes" loading="lazy"><figcaption>Taller de Completion Tools (HCT)</figcaption></figure>
+            <figure class="tall"><img src="img/hct-colgador.jpg" alt="Sarta protegida lista para envío" loading="lazy"><figcaption>Sarta lista para envío a pozo</figcaption></figure>
+            <figure class="tall"><img src="img/hct-sensores.jpg" alt="Portasensores de presión y temperatura" loading="lazy"><figcaption>Sensores permanentes de P/T</figcaption></figure>
+            <figure><img src="img/pe-titulacion.jpg" alt="Titulación de ácido clorhídrico" loading="lazy"><figcaption>Titulación de HCl</figcaption></figure>
+            <figure><img src="img/pe-crudo.jpg" alt="Tubo de centrífuga con muestra de crudo" loading="lazy"><figcaption>Análisis de crudo</figcaption></figure>
+            <figure class="big"><img src="img/als-electronica.jpg" alt="Tarjeta electrónica dentro de gabinete de control" loading="lazy"><figcaption>Electrónica de control e instrumentación</figcaption></figure>
+            <figure class="tall"><img src="img/pe-sistemas-acidos.jpg" alt="Matraces con sistemas ácidos de estimulación" loading="lazy" style="object-position: center 45%"><figcaption>Sistemas ácidos de estimulación</figcaption></figure>
+            <figure class="tall"><img src="img/halliburton-base.jpg" alt="Entrada de la base de Halliburton en Ciudad del Carmen" loading="lazy" style="object-position: center 70%"><figcaption>Base Cd. del Carmen</figcaption></figure>
+          </div>
+        </article>
+
+        <div class="depth"><span class="y">2024</span><span class="m">Sep 24 – May 26</span></div>
+        <article class="job">
+          <h3 class="co">Baker Hughes</h3>
+          <p class="pos" style="margin-bottom:0">Practicante · Soporte de Operaciones y Personal</p>
+          <p class="label meta">Cd. del Carmen, México</p>
+          <ul>
+            <li>Administré bases de datos de personal para operaciones en <b>LATAM</b> y coordiné su movilización a sitios de perforación según los programas operativos.</li>
+            <li>Gestioné datos de herramientas en <b>MAPS</b>, mejorando la integridad de la información y reduciendo discrepancias operativas.</li>
+            <li>Actualicé datos de <b>Job Center</b> para varios países, mejorando la calidad de los reportes y la precisión estadística.</li>
+            <li>Brindé soporte pre y post trabajo en operaciones de pozo, y apoyé en documentación contractual y de cumplimiento.</li>
+            <li>Organicé documentación de herramientas: reportes de inspección, fichas técnicas, registros de mantenimiento y bitácoras de trazabilidad.</li>
+            <li>Con el Service Delivery Coordinator, cargué reportes de condición de herramientas para facilitar la planeación del mantenimiento.</li>
+            <li>Implementé ajustes operativos que redujeron tiempos de respuesta y mejoraron la eficiencia del equipo.</li>
+          </ul>
+        </article>
+
+        <div class="depth"><span class="y">2019</span><span class="m">Ago 19 – Ago 25</span></div>
+        <article class="job" style="padding-bottom:0">
+          <h3 class="co">UNACAR</h3>
+          <p class="pos" style="margin-bottom:0">Ingeniería en Mecatrónica (titulado)</p>
+          <p class="label meta">Universidad Autónoma del Carmen · Cd. del Carmen, México</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <div class="wrap">
+      <div class="sec-head"><h2>Proyectos</h2><span class="label">Industria y academia</span></div>
+      <div class="projects">
+        <article class="proj feature">
+          <div class="top"><span class="label">Halliburton · 2026</span></div>
+          <h3>ALTrack: inventario de herramientas BEC</h3>
+          <p>Controla bombas, separadores de gas y protectores por condición y ubicación, con búsqueda por número de serie, edición multiusuario y registro de auditoría de cada cambio. Una etiqueta QR en cada equipo abre su ficha directamente desde el teléfono.</p>
+          <div class="shots">
+            <figure><img src="img/altrack-dashboard.jpg" alt="Tablero y búsqueda de ALTrack" loading="lazy"><figcaption>Tablero por tipo y condición, y búsqueda con exportación a Excel</figcaption></figure>
+            <figure><img src="img/altrack-qr.webp" alt="Escaneo de código QR en el taller y ficha del equipo" loading="lazy"><figcaption>Escaneo QR en taller y ficha del equipo</figcaption></figure>
+          </div>
+          <div class="stack"><span class="tag">Power Apps</span><span class="tag">SharePoint</span><span class="tag">QR</span></div>
+        </article>
+        <article class="proj">
+          <div class="top"><span class="label">Halliburton · 2026</span></div>
+          <h3>Control de capacitación de personal</h3>
+          <p>Seguimiento de registros de capacitación, vigencia de certificados y próximos requerimientos. El personal sube sus certificados y monitorea su estatus de cumplimiento.</p>
+          <div class="stack"><span class="tag">Power Apps</span><span class="tag">Power Automate</span></div>
+        </article>
+        <article class="proj">
+          <div class="top"><span class="label">Competencia nacional · Ene–Mar 2021</span><span class="stat">90%</span></div>
+          <h3>Robot limpiador de playas</h3>
+          <p>Diseño y construcción de un robot para recolectar residuos en arena, con visión artificial basada en machine learning que alcanza 90% de precisión en la clasificación de residuos.</p>
+          <div class="stack"><span class="tag">Visión artificial</span><span class="tag">Machine learning</span><span class="tag">Control</span></div>
+        </article>
+        <article class="proj">
+          <div class="top"><span class="label">Líder de equipo · Ago–Dic 2023</span></div>
+          <h3>Estacionamiento automatizado</h3>
+          <p>Sistema con Arduino y sensores para asignar lugares y detectar vehículos en tiempo real. Coordiné la integración electrónica, mecánica y de software hasta un prototipo funcional.</p>
+          <div class="media wide"><video src="video/estacionamiento.mp4#t=1" controls muted playsinline preload="metadata" aria-label="Video del prototipo de estacionamiento automatizado"></video></div>
+          <div class="stack"><span class="tag">Arduino</span><span class="tag">C++</span><span class="tag">Sensores</span></div>
+        </article>
+        <article class="proj">
+          <div class="top"><span class="label">Automatización con PLC</span></div>
+          <h3>Semáforo con PLC Festo</h3>
+          <p>Semáforo programado en un PLC Festo, con temporizadores para el ciclo verde, amarillo y rojo, y un botón peatonal que solicita el cruce dentro de la lógica de control. Cableado y probado en banco.</p>
+          <div class="media pair">
+            <video src="video/control-1.mp4#t=0.5" controls muted playsinline preload="metadata" aria-label="Video del semáforo con PLC Festo, parte 1"></video>
+            <video src="video/control-2.mp4#t=0.5" controls muted playsinline preload="metadata" aria-label="Video del semáforo con PLC Festo, parte 2"></video>
+          </div>
+          <div class="stack"><span class="tag">PLC Festo</span><span class="tag">Temporizadores</span><span class="tag">Botón peatonal</span><span class="tag">Cableado</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="habilidades">
+    <div class="wrap">
+      <div class="sec-head"><h2>Habilidades técnicas</h2></div>
+      <div class="skills">
+        <div class="skill"><h3>Equipo de fondo</h3><div class="tags"><span class="tag">Empacadores recuperables y HPHT</span><span class="tag">Liners</span><span class="tag">Colgadores</span><span class="tag">Válvulas TRSV</span><span class="tag">Sartas de limpieza</span><span class="tag">Sensores P/T</span><span class="tag">Motores, bombas y sellos BEC</span></div></div>
+        <div class="skill"><h3>Laboratorio y normas</h3><div class="tags"><span class="tag">ASTM E224</span><span class="tag">API RP 19C</span><span class="tag">ISO 13503-2</span><span class="tag">API RP 42</span><span class="tag">Inspección DS-1</span><span class="tag">Espectrofotometría</span><span class="tag">Agua y salmueras</span></div></div>
+        <div class="skill"><h3>Automatización y control</h3><div class="tags"><span class="tag">PLC Siemens</span><span class="tag">Festo</span><span class="tag">Modbus</span><span class="tag">Lógica de control</span><span class="tag">Integración de sensores</span></div></div>
+        <div class="skill"><h3>Programación</h3><div class="tags"><span class="tag">C++</span><span class="tag">Arduino</span><span class="tag">Lista de Instrucciones (STL)</span><span class="tag">Apps móviles (fundamentos)</span><span class="tag">Visión artificial</span></div></div>
+        <div class="skill"><h3>Software</h3><div class="tags"><span class="tag">Power Apps</span><span class="tag">Power Automate</span><span class="tag">SharePoint</span><span class="tag">SAP ERP</span><span class="tag">MAPS</span><span class="tag">Job Center</span><span class="tag">Diseño de cableado</span></div></div>
+        <div class="skill"><h3>Análisis</h3><div class="tags"><span class="tag">Optimización de procesos</span><span class="tag">Gestión de datos</span><span class="tag">Reportes operativos</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formacion">
+    <div class="wrap trio">
+      <div>
+        <h3>Certificaciones</h3>
+        <div class="item"><strong>IADC RigPass</strong><span>Inducción de seguridad en pozo para personal de perforación y campo.</span></div>
+        <div class="item"><strong>Anexo SSPA (PEMEX)</strong><span>Seguridad, salud y protección ambiental para operaciones en México.</span></div>
+      </div>
+      <div>
+        <h3>Idiomas</h3>
+        <div class="item lang"><div><strong>Español</strong><span>Nativo</span></div><div class="meter" aria-label="Nativo"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+        <div class="item lang"><div><strong>Inglés</strong><span>B2 · MCER</span></div><div class="meter" aria-label="B2 de C2"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+      </div>
+      <div>
+        <h3>Habilidades blandas</h3>
+        <div class="soft"><span class="tag">Comunicación</span><span class="tag">Liderazgo</span><span class="tag">Solución de problemas</span><span class="tag">Trabajo en equipo</span><span class="tag">Adaptabilidad</span><span class="tag">Atención al detalle</span><span class="tag">Administración del tiempo</span><span class="tag">Pensamiento crítico</span><span class="tag">Resolución de conflictos</span><span class="tag">Cultura de seguridad</span><span class="tag">Orientación al cliente</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div>
+      <h2>Hablemos</h2>
+      <p>Abierto a oportunidades en ingeniería, operaciones y energía.</p>
+    </div>
+    <div class="contact" style="margin-top:0">
+      <span class="chip"><span id="email2">oacostapinto@gmail.com</span><button type="button" data-copy="email2">Copiar</button></span>
+      <a class="chip" href="https://linkedin.com/in/orlando-acosta" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function () {
+  var toast = document.getElementById('toast'), t;
+  function show(msg) { toast.textContent = msg; toast.hidden = false; clearTimeout(t); t = setTimeout(function () { toast.hidden = true; }, 1800); }
+  function selectText(el) { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.dataset.copy), text = el.textContent.trim();
+      try {
+        navigator.clipboard.writeText(text).then(function () { show('Copiado: ' + text); }, function () { selectText(el); show('Texto seleccionado, usa Ctrl+C'); });
+      } catch (e) { selectText(el); show('Texto seleccionado, usa Ctrl+C'); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

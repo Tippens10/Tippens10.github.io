@@ -8,7 +8,7 @@
 <title>Orlando Acosta Pinto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: hoja técnica de herramienta + trayectoria como registro de pozo (pista vertical con intervalos por fecha) */
 /* Tema único claro (elegido a propósito): blancos cálidos, grises suaves y rojo como acento */
@@ -21,8 +21,8 @@
   --accent: #c8102e;
   --accent-soft: #fcebed;
   --hazard: #c8102e;
-  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
-  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
   color-scheme: light;
 }
@@ -197,6 +197,25 @@ footer p { margin: 8px 0 0; color: var(--muted); max-width: 48ch; }
 .shots img { display: block; width: 100%; height: auto; }
 .shots figcaption { padding: 8px 12px; font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--line); }
 @media (max-width: 720px) { .shots { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- tipografía Sora: sin mayúsculas forzadas, tamaños ajustados ---------- */
+h1, h2, h3 { line-height: 1.12; letter-spacing: -0.02em; }
+.topbar .mark { font-size: 1.05rem; letter-spacing: -0.01em; }
+.hero h1 { font-size: clamp(2.5rem, 6.4vw, 4.4rem); text-transform: none; letter-spacing: -0.035em; }
+.sec-head h2 { font-size: clamp(1.7rem, 3.6vw, 2.3rem); text-transform: none; font-weight: 700; letter-spacing: -0.03em; }
+.spec header strong { font-size: 1.05rem; text-transform: none; letter-spacing: -0.01em; }
+.job .co { font-size: 1.55rem; text-transform: none; letter-spacing: -0.02em; }
+.line-card h3 { font-size: 1.05rem; }
+.proj h3 { font-size: 1.25rem; }
+.stat { font-size: 2rem; letter-spacing: -0.03em; }
+.skill h3, .trio h3 { font-size: 1.05rem; text-transform: none; letter-spacing: -0.01em; }
+footer h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); text-transform: none; letter-spacing: -0.03em; }
+@media (max-width: 560px) { .job .co { font-size: 1.3rem; } }
+
+/* ---------- foto al final ---------- */
+.sign { display: flex; align-items: center; gap: 20px; min-width: 0; }
+.sign img { width: 112px; height: 140px; object-fit: cover; object-position: center 20%; flex: none; border-radius: 4px; border-bottom: 3px solid var(--accent); }
+@media (max-width: 480px) { .sign img { width: 88px; height: 110px; } }
 
 .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 4px; font-size: 0.85rem; z-index: 20; }
 
@@ -414,9 +433,12 @@ footer p { margin: 8px 0 0; color: var(--muted); max-width: 48ch; }
 
 <footer id="contacto">
   <div class="wrap">
-    <div>
-      <h2>Hablemos</h2>
-      <p>Abierto a oportunidades en ingeniería, operaciones y energía.</p>
+    <div class="sign">
+      <img src="img/orlando.jpg" alt="Orlando Acosta con overol de trabajo" loading="lazy">
+      <div>
+        <h2>Hablemos</h2>
+        <p>Abierto a oportunidades en ingeniería, operaciones y energía.</p>
+      </div>
     </div>
     <div class="contact" style="margin-top:0">
       <span class="chip"><span id="email2">oacostapinto@gmail.com</span><button type="button" data-copy="email2">Copiar</button></span>
